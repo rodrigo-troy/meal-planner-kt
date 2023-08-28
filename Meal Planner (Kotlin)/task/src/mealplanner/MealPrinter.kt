@@ -9,14 +9,33 @@ $ Project: Meal Planner
  */
 class MealPrinter {
     fun printMeal(meal: Meal) {
-        println("Category: ${meal.category}")
+        println("Category: ${meal.category.printLowercase()}")
         println("Name: ${meal.name}")
         println("Ingredients:")
-
         meal.ingredients.forEach { println(it) }
     }
 
     fun printSuccessMessage() {
         println("The meal has been added!.")
+    }
+
+    fun printInvalidCommand() {
+
+    }
+
+    fun printInvalidCategory() {
+        println(
+            "Wrong meal category! Choose from: ${
+                MealCategory.values().filter { it.printable }.joinToString(", ") { it.printLowercase() }
+            }."
+        )
+    }
+
+    fun printExitMessage() {
+        println("Bye!")
+    }
+
+    fun printMenuOptions() {
+        println("What would you like to do (add, show, exit)?")
     }
 }

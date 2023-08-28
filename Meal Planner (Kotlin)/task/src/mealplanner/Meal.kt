@@ -8,4 +8,4 @@ $ Project: Meal Planner
  * Time: 12:17
  */
 
-data class Meal(val category: String, val name: String, val ingredients: List<String>)
+data class Meal(val category: MealCategory, val name: String, val ingredients: List<String>)

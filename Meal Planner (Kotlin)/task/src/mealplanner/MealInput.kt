@@ -1,5 +1,7 @@
 package mealplanner
 
+import java.util.*
+
 /**
  * Created with IntelliJ IDEA.
 $ Project: Meal Planner
@@ -8,9 +10,16 @@ $ Project: Meal Planner
  * Time: 12:28
  */
 class MealInput {
-    fun getCategory(): String {
+    fun getCategory(): MealCategory {
         println("Which meal do you want to add (breakfast, lunch, dinner)?")
-        return readlnOrNull() ?: ""
+        val categoryInput = readlnOrNull() ?: ""
+
+        return when (categoryInput.lowercase(Locale.getDefault())) {
+            "breakfast" -> MealCategory.BREAKFAST
+            "lunch" -> MealCategory.LUNCH
+            "dinner" -> MealCategory.DINNER
+            else -> MealCategory.UNDEFINED
+        }
     }
 
     fun getName(): String {
