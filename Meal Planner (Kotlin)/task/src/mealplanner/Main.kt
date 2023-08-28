@@ -1,13 +1,5 @@
 package mealplanner
 
-enum class MealCategory(val printable: Boolean) {
-    BREAKFAST(true), LUNCH(true), DINNER(true), UNDEFINED(false);
-
-    fun printLowercase(): String {
-        return this.name.lowercase()
-    }
-}
-
 fun main() {
     val mealInput = MealInput()
     val mealList = MealList()
@@ -20,36 +12,22 @@ fun main() {
 
         when (command) {
             "add" -> {
-                var category: MealCategory? = null
-                while (category == null || !category.printable) {
-                    if (category != null) {
-                        mealPrinter.printInvalidCategory()
-                    }
-
-                    category = mealInput.getCategory()
-                }
-
-                var mealName: String? = null
-                while (mealName == null) {
-                    mealName = mealInput.getName()
-                }
-
-                var ingredientsList: List<String>? = null
-                while (ingredientsList == null) {
-                    ingredientsList = mealInput.getIngredients()
-                }
-
+                val category: MealCategory = mealInput.getCategory(true)
+                val mealName: String = mealInput.getName(true)
+                val ingredientsList: List<String> = mealInput.getIngredients(true)
                 val meal = Meal(category, mealName, ingredientsList)
                 mealList.addMeal(meal)
-
                 mealPrinter.printSuccessMessage()
             }
+
             "show" -> {
                 mealList.printMeals()
             }
+
             "exit" -> {
                 mealPrinter.printExitMessage()
             }
+
             else -> {
                 mealPrinter.printInvalidCommand()
             }

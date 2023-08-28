@@ -16,7 +16,7 @@ class MealPrinter {
     }
 
     fun printSuccessMessage() {
-        println("The meal has been added!.")
+        println("The meal has been added!")
     }
 
     fun printInvalidCommand() {
@@ -24,11 +24,7 @@ class MealPrinter {
     }
 
     fun printInvalidCategory() {
-        println(
-            "Wrong meal category! Choose from: ${
-                MealCategory.values().filter { it.printable }.joinToString(", ") { it.printLowercase() }
-            }."
-        )
+        println("Wrong meal category! Choose from: ${MealCategory.printAll()}.")
     }
 
     fun printExitMessage() {
@@ -37,5 +33,13 @@ class MealPrinter {
 
     fun printMenuOptions() {
         println("What would you like to do (add, show, exit)?")
+    }
+
+    fun printCategoryPrompt() {
+        println("Which meal do you want to add (${MealCategory.printAll()})?:")
+    }
+
+    fun printNamePrompt() {
+        println("Input the meal's name:")
     }
 }
